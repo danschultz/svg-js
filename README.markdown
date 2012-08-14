@@ -74,3 +74,6 @@ SVG JS can be compiled using the Cake compile task. Run `cake` to see all availa
 * `cake compile`. Compile the source to the default `lib` folder.
 * `cake --output bin/svg.js compile`. Compile source to `bin/svg.js`.
 * `cake --watch compile`. Compile whenever a source file changes.
+
+## Documentation
+Documentation can be generated using the `cake doc` task. This task requires [Codo](https://github.com/netzpirat/codo).

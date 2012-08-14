@@ -24,18 +24,21 @@ option "-o", "--output [DIR]", "The location of the compile JS, defaults to #{DE
 option "-w", "--watch", "Recompile whenever a source file changes"
 
 task "compile", "Compile sources into one JS file", (options) ->
+  command = (options) ->
+    o = 
+      join: options.output || DEFAULT_OUTPUT_FILE
+      compile: ("#{SOURCE_DIR}/#{file}.coffee" for file in COFFEE_FILES).join(" ")
+    o.watch = option.watch if options.watch?
+    
+    c = "coffee"
+    for key, value of o
+      c += " --#{key}"
+      c += " #{value}" if value isnt true
+    c
+
   console.log "Compiling with: #{command(options)}"
   exec command(options), (err, stdout, stderr) ->
     util.log err if err
 
-command = (options) ->
-  o = 
-    watch: options.watch
-    join: options.output || DEFAULT_OUTPUT_FILE
-    compile: ("#{SOURCE_DIR}/#{file}.coffee" for file in COFFEE_FILES).join(" ")
-  
-  c = "coffee"
-  for key, value of o
-    c += " --#{key}"
-    c += " #{value}" if value isnt true
-  c
+task "doc", "Document source files with Codo (https://github.com/netzpirat/codo)", (options) ->
+  exec "codo"
