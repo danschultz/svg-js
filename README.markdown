@@ -4,8 +4,8 @@ SVG JS is a JavaScript library for creating and interacting with SVG elements.
 ## Overview
 SVG JS provides an object oriented way of interacting with SVG elements.
 
-*A simple SVG document*
-	
+### A simple SVG document
+
 ```javascript
 var doc = new SVG.Document("container").size(300, 300);
 var rect = doc.rect({width:100, height:100}).fill({color:"red"});
@@ -19,21 +19,27 @@ var rect = doc.rect({width:100, height:100}).fill({color:"red"});
 </div>
 ```
 
-*Clipping elements*
+### Clipping elements
+Clipping elements in SVG JS can be done with either `clip()` or `clipTo()`.
+
+Using `clip()` creates a clip path in the parents `defs` node, and passes it to a block.
 ```javascript
-// Clip a rectangle using a block function. This creates a new clip path, and passes it in to the block.
 rect.clip(function(clipPath)
 {
 	clipPath.rect({x:10, y:10, width:80, height:80})
 });
+```
 
-// Clip a rectangle by creating a clip path.
+You can also create reuse clip paths for multiple elements using `clipTo()`.
+```javascript
 var clipPath = doc.defs().clipPath();
-clipRect = clipPath.rect({x:10, y:10, width:80, height:80})
+clipRect = clipPath.rect({x:10, y:10, width:80, height:80});
 rect.clipTo(clipPath)
 ```
 
-*Create new SVG nodes from any SVG container*
+### Creating new SVG elements
+Containers in SVG JS have creators for new sub-elements.
+
 ```javascript
 // Create an image tag.
 image = doc.image()
@@ -43,11 +49,13 @@ svg = doc.svg()
 rect = svg.rect()
 ```
 
-*Explicitly set a node's attributes*
+### Explicitly setting attributes
+You can set an element's attributes directly with `setAttribute()`. This is useful for functionality that hasn't been implemented by SVG JS.
+
 ```javascript
 rect.setAttribute("x", 50);
 
-// Set a namespaced attribute
+// Set an attribute with a namespace
 rect.setAttribute("x", 50, "http://www.w3.org/2000/svg");
 ```
 
