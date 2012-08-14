@@ -33,7 +33,7 @@ clipRect = clipPath.rect({x:10, y:10, width:80, height:80})
 rect.clipTo(clipPath)
 ```
 
-*Create SVG nodes from any SVG container*
+*Create new SVG nodes from any SVG container*
 ```javascript
 // Create an image tag.
 image = doc.image()
@@ -41,6 +41,14 @@ image = doc.image()
 // Create a nested SVG node with a rect.
 svg = doc.svg()
 rect = svg.rect()
+```
+
+*Explicitly set a node's attributes*
+```javascript
+rect.setAttribute("x", 50);
+
+// Set a namespaced attribute
+rect.setAttribute("x", 50, "http://www.w3.org/2000/svg");
 ```
 
 ## Compiling
