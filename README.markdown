@@ -1,8 +1,16 @@
 # SVG JS
-SVG JS is a JavaScript library for creating and interacting with SVG elements.
+SVG JS is a JavaScript library for creating and interacting with SVG content.
+
+This library aims to:
+
+* Provide an object oriented interface for working with SVG.
+* Provide utilities and helpers for modifying SVG elements.
+* Provide an abstraction for the SVG spec.
+* Not have any dependencies on other JavaScript libraries.
+
+This library does not provide cross-browser support.
 
 ## Overview
-SVG JS provides an object oriented way of interacting with SVG elements.
 
 ### A simple SVG document
 
